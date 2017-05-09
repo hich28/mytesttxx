@@ -1,0 +1,15 @@
+bool p= false ;
+
+process P
+{
+state 0,1,2,3 ;
+init 0 ;
+ trans
+   0 -> 1 {effect p=false;},
+   1 -> 2 {effect p=true ;},
+   2 -> 3 {effect p=true ;},
+   3 -> 2 {effect p=true ;},
+   3 -> 0 {effect p=false ;},
+
+}
+system async; 

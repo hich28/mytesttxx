@@ -1,0 +1,20 @@
+ int a = 0, b = 0;
+
+process P {
+ state x;
+ init x;
+
+ trans
+   x -> x { guard a < 3 && b < 3; effect a = a + 1; },
+   x -> x { guard a < 3 && b < 3; effect b = b + 1; };
+}
+
+process Q {
+  state wait, work;
+  init wait;
+  trans
+    wait -> work { guard b > 1; },
+    work -> wait { guard a > 1; };
+}
+
+system async;
